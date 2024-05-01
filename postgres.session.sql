@@ -1,1 +1,1 @@
-   SELECT * FROM movies WHERE actors 
+SELECT * FROM movies WHERE title ILIKE '%fast and%' AND year = 2016;

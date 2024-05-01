@@ -8,11 +8,13 @@ const ejercicio03 =
 
 const ejercicio04 = "SELECT * FROM movies WHERE title ILIKE '%til%';";
 
-const ejercicio05 = "";
+const ejercicio05 = "SELECT * FROM movies WHERE array_length(actors, 1) = 1;";
 
-const ejercicio06 = "";
+const ejercicio06 =
+  "SELECT title, (SELECT FLOOR(AVG(rating)) FROM UNNEST(ratings) AS rating) FROM movies;";
 
-const ejercicio07 = "";
+const ejercicio07 =
+  "SELECT * FROM movies WHERE title ILIKE '%fast and%' AND year = 2016;";
 
 module.exports = {
   ejercicio02,
