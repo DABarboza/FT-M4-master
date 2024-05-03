@@ -19,7 +19,7 @@ describe("Ejercicio 2 | Modelos DB", () => {
         hp: 100.0,
         mana: 150.0,
       });
-      const keys = ['race', 'code', 'name', 'age', 'hp', 'mana'];
+      const keys = ["race", "code", "name", "age", "hp", "mana"];
       expect(Object.keys(character.toJSON())).toEqual(keys);
     });
 
@@ -85,11 +85,13 @@ describe("Ejercicio 2 | Modelos DB", () => {
         code: "234Af",
         hp: 128.0,
         name: "Ale",
-        mana: 254.0
+        mana: 254.0,
       });
-      const timestamps = ['createdAt', 'updatedAt'];
-      expect(Object.keys(character.toJSON())).not.toEqual(expect.arrayContaining(timestamps));
-    })
+      const timestamps = ["createdAt", "updatedAt"];
+      expect(Object.keys(character.toJSON())).not.toEqual(
+        expect.arrayContaining(timestamps)
+      );
+    });
   });
 
   describe("Ability", () => {
@@ -102,9 +104,9 @@ describe("Ejercicio 2 | Modelos DB", () => {
       const ability = await Ability.build({
         name: "Auri",
         description: "Que buena habilidad",
-        mana_cost: 153.99
-      })
-      const keys = ['id', 'name', 'description', 'mana_cost'];
+        mana_cost: 153.99,
+      });
+      const keys = ["id", "name", "description", "mana_cost"];
       console.log(ability.toJSON());
       expect(Object.keys(ability.toJSON())).toEqual(keys);
     });
@@ -136,17 +138,23 @@ describe("Ejercicio 2 | Modelos DB", () => {
     test("La combinación de name y mana_cost debe ser única", async () => {
       expect.assertions(5);
       try {
-        const abilityOne = await Ability.create({name: 'Fire Ball', mana_cost: 150.0});
-        expect(abilityOne.toJSON()).toHaveProperty('name','Fire Ball');
-        expect(abilityOne.toJSON()).toHaveProperty('mana_cost',150.0);
-        const abilityTwo = await Ability.create({name: 'Fire Ball', mana_cost: 100.0});
-        expect(abilityTwo.toJSON()).toHaveProperty('name','Fire Ball');
-        expect(abilityTwo.toJSON()).toHaveProperty('mana_cost',100.0);
-        await Ability.create({name: 'Fire Ball', mana_cost: 150.0});
+        const abilityOne = await Ability.create({
+          name: "Fire Ball",
+          mana_cost: 150.0,
+        });
+        expect(abilityOne.toJSON()).toHaveProperty("name", "Fire Ball");
+        expect(abilityOne.toJSON()).toHaveProperty("mana_cost", 150.0);
+        const abilityTwo = await Ability.create({
+          name: "Fire Ball",
+          mana_cost: 100.0,
+        });
+        expect(abilityTwo.toJSON()).toHaveProperty("name", "Fire Ball");
+        expect(abilityTwo.toJSON()).toHaveProperty("mana_cost", 100.0);
+        await Ability.create({ name: "Fire Ball", mana_cost: 150.0 });
       } catch (error) {
         expect(error.message).toBeDefined();
       }
-    })
+    });
   });
 
   describe("Role", () => {
